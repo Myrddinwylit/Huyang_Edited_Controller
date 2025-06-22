@@ -2,7 +2,9 @@
 THIS REPOSITORY HAS NOT BEEN FULLY TESTED PLEASE USE CAUTION IF YOU FOUND THIS
 
 
-This Software was Developed by Jeanette Müller - this is a modified version of her software to suit some of my needs
+This Software was Developed by Jeanette Müller - this is a modified version of her software to suit some of my needs I do not assume claim or ownership of her work - i have used her code as a baseline for devleoping some other features for my Professor Huyang build.
+
+
 Software for ESP8266 to control Huyang from DroidDivision via Browser/Mobile Device.
 This Software runs on mostly any ESP8266 together with two GC9A01 TFT Displays. 
 Inside the Folder /Wiring Diagrams you can find some Instructions how to connect two GC9A01 Displays to common Boards. 
