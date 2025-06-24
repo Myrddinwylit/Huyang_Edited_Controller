@@ -1,0 +1,14 @@
+<hr>
+<div class="section-container">
+    <h4>Neck Controls</h4>
+
+    <div class="joystickContainer">
+        <div id="joyNeck" class="joystick"></div>
+    </div>
+
+    <div class="slidecontainer">
+        <h4 class="slider-label">Tilt Sideways</h4>
+        <input id="slider_neckTiltSideways" type="range" min="-100" max="100" value="0" class="slider" onInput="sendNeckUpdate()">
+        <span id="slider_neckTiltSideways_value" class="slider-value">0</span> <!-- ADDED: Span for value display -->
+    </div>
+</div>

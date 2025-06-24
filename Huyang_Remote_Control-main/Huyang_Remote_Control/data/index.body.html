@@ -1,0 +1,14 @@
+<hr>
+<div class="section-container">
+    <h4>Body Controls</h4>
+
+    <div class="joystickContainer">
+        <div id="joyBody" class="joystick"></div>
+    </div>
+
+    <div class="slidecontainer">
+        <h4 class="slider-label">Tilt Sideways</h4>
+        <input id="slider_bodyTiltSideways" type="range" min="-100" max="100" value="0" class="slider" onInput="sendBodyUpdate()">
+        <span id="slider_bodyTiltSideways_value" class="slider-value">0</span> <!-- ADDED: Span for value display -->
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html id="chestlights-page"> <!-- Added ID for JS detection -->
+<head>
+<title>Huyang Control - Chest Lights</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" type="text/css" href="/styles.css">
+<!-- Load Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="/joystick.js"></script>
+<script src="/javascript.js"></script>
+
+</head>
+<body>
+<div class="menuContainer">
+    <a href="/index.html" class="button">Start</a>
+    <a href="/settings.html" class="button">Settings</a>
+    <a href="/calibration.html" class="button">Calibration</a>
+    <a href="/chestlights.html" class="button selected">Chest Lights</a>
+</div>
+
+<hr>
+
+<div id="main_content_area" class="main-container">
+    <div class="section-container">
+        <h2 class="section-title">Chest Lights Control</h2>
+        
+        <p>This section allows you to control the light patterns and colors of Huyang's chest LEDs.</p>
+
+        <!-- LED Visualizers -->
+        <div class="led-container">
+            <div id="leftLed" class="led"></div>
+            <div id="rightLed" class="led"></div>
+        </div>
+
+        <div class="light-mode-buttons">
+            <button class="button" id="button_chestLightOff" onclick="sendChestLightUpdate(0)">
+                <span class="icon"><i class="fas fa-lightbulb"></i></span> Off
+            </button>
+            <button class="button" id="button_chestLightOn" onclick="sendChestLightUpdate(1)">
+                <span class="icon"><i class="fas fa-lightbulb-on"></i></span> On
+            </button>
+            <button class="button" id="button_chestLightWarning" onclick="sendChestLightUpdate(2)">
+                <span class="icon" style="color: red;"><i class="fas fa-exclamation-triangle"></i></span> Warning Blink
+            </button>
+            <button class="button" id="button_chestLightProcessing" onclick="sendChestLightUpdate(3)">
+                <span class="icon" style="color: deepskyblue;"><i class="fas fa-sync-alt"></i></span> Processing
+            </button>
+            <button class="button" id="button_chestLightDroid1" onclick="sendChestLightUpdate(4)">
+                <span class="icon" style="color: gold;"><i class="fas fa-robot"></i></span> Droid Mode 1
+            </button>
+            <button class="button" id="button_chestLightDroid2" onclick="sendChestLightUpdate(5)">
+                <span class="icon" style="color: magenta;"><i class="fas fa-bolt"></i></span> Droid Mode 2
+            </button>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 0.9em; color: #aaa;">
+            Select a mode to control the robot's chest lights.
+        </p>
+    </div>
+</div>
+
+<footer>
+    Made with &#9829; by Jeanette Müller
+</footer>
+
+<script>
+    // Call getServerData to set the initial state of buttons and LED visuals when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("Chest Lights page DOM loaded, calling getServerData().");
+        // getServerData will fetch current state and then call updateUserInterface, which then calls updateLedVisuals
+        getServerData(); 
+    });
+</script>
+</body>
+</html>
