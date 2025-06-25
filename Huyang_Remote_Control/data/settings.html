@@ -1,0 +1,73 @@
+<!DOCTYPE HTML><html>
+<head>
+<title>Huyang Control - Settings</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" type="text/css" href="/styles.css">
+<script src="/joystick.js"></script> 
+<script src="/javascript.js"></script> 
+</head>
+<body>
+<div class="menuContainer">
+    <a href="/index.html" class="button">Start</a>
+    <a href="/settings.html" class="button selected">Settings</a>
+    <a href="/calibration.html" class="button">Calibration</a>
+    <a href="/chestlights.html" class="button">Chest Lights</a>
+</div>
+
+<hr>
+
+<div id="main_content_area">
+    <div class="section-container">
+        <h2 class="section-title">Robot Settings</h2>
+        
+        <div class="controls-column">
+            <h4 class="slider-label">Robot Name</h4>
+            <input type="text" id="robot_name_input" class="text-input" placeholder="Enter Robot Name" maxlength="20" onchange="sendSettingsUpdate()">
+            <p class="description">Give your robot a unique name (max 20 characters).</p>
+        </div>
+
+        <div class="controls-column">
+            <h4 class="slider-label">Master Movement Speed: <span id="master_speed_value">100%</span></h4>
+            <div class="slidecontainer">
+                <input type="range" min="50" max="150" value="100" class="slider" id="master_speed_slider" 
+                       oninput="document.getElementById('master_speed_value').innerText = this.value + '%'; sendSettingsUpdate()">
+            </div>
+            <p class="description">Adjust the overall speed and responsiveness of robot movements (50% slow - 150% fast).</p>
+        </div>
+        
+        <hr>
+
+        <div class="controls-row button-group">
+            <button class="button" onclick="sendRebootCommand()">Reboot Robot</button>
+            <p class="description">Restarts the robot's internal system.</p>
+        </div>
+
+        <div class="controls-row button-group">
+            <button class="button danger-button" onclick="confirmFactoryReset()">Factory Reset</button>
+            <p class="description">Resets ALL settings and calibration to factory defaults. Cannot be undone!</p>
+        </div>
+
+        <hr>
+
+        <div class="controls-row">
+            <h4 class="slider-label">Firmware Version: <span id="firmware_version_display">Loading...</span></h4>
+            <p class="description">Current software version running on your robot.</p>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    Made with &#9829; by Jeanette Müller
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("Settings page DOM loaded, calling initSettings().");
+        initSettings(); // New function to fetch and display settings
+    });
+</script>
+</body>
+</html>

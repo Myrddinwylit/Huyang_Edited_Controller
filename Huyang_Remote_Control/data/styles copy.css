@@ -1,0 +1,411 @@
+/*
+ * Integrated styles.css
+ * This stylesheet combines the original functional layout styles with a new "robot controller" aesthetic.
+ * It prioritizes visibility and correct layout while applying new colors, fonts, and shadow effects.
+ */
+
+/* --- General Body and Container Styles --- */
+body {
+    font-family: 'Roboto Mono', monospace, 'Consolas', 'Courier New', sans-serif; /* Prioritize monospace, with fallbacks */
+    background-color: #0d1117; /* Deep, dark charcoal for a robust background */
+    color: #e0e6ed; /* Off-white for general text, soft on eyes */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex; /* Use flexbox for overall layout */
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    overflow-x: hidden; /* Prevent horizontal scroll on small overflows */
+    font-size: 16pt; /* Adjusted base font size for better readability on various devices */
+}
+
+/* Base link styling for a clean look */
+a:link, a:visited, a:active {
+    color: #e0e6ed; /* Matches body text color */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #00ff99; /* Neon green for hover, like an active data link */
+}
+
+/* --- Top Menu Bar Styling --- */
+.menuContainer {
+    background-color: #161b22; /* Slightly lighter than body background, like a distinct panel */
+    padding: 12px 0; /* More padding */
+    display: flex;
+    justify-content: center; /* Center menu items */
+    gap: 15px; /* Increased space between menu items */
+    border-bottom: 2px solid #00ff99; /* Vibrant neon green bottom border */
+    box-shadow: 0 4px 8px rgba(0, 255, 153, 0.2); /* Subtle glow effect for menu bar */
+    flex-wrap: wrap; /* Ensure responsiveness for menu items */
+    width: 100%; /* Ensure it takes full width as per original */
+    margin: 0 auto; /* Center as a block */
+    float: left; /* Keep float for compatibility, though flex handles layout */
+    display: block; /* Keep block display for menu container */
+}
+
+.menuContainer .button {
+    background-color: #21262d; /* Darker button for contrast */
+    color: #00ff99; /* Neon green text for menu items */
+    padding: 10px 20px;
+    border: 1px solid #00ff99; /* Thin neon green border */
+    border-radius: 4px; /* Slightly sharper corners */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer; /* Indicate clickable */
+    display: inline-block; /* Original display for buttons */
+    margin: 10px; /* Original margin */
+}
+
+.menuContainer .button:hover {
+    background-color: #00ff99; /* Invert colors on hover */
+    color: #161b22; /* Dark text on neon background */
+    border-color: #00ff99;
+    box-shadow: 0 0 10px #00ff99; /* More pronounced glow on hover */
+}
+
+.button.selected { /* For active states, like 'Auto is ON' */
+    background-color: #00ff99;
+    color: #21262d;
+    border-color: #00ff99;
+    box-shadow: 0 0 20px #00ff99; /* Intense glow for selected state */
+    text-shadow: 0 0 5px #21262d; /* Text shadow to make it pop on bright background */
+}
+
+/* --- Section Dividers and Titles --- */
+hr {
+    border: none;
+    border-top: 1px dashed #4a4a4a; /* Dashed line for a circuit-board feel */
+    margin: 30px 5%; /* More prominent and indented */
+    opacity: 0.5; /* Subtler divider */
+}
+
+h2 { /* Original h2 styles, now with new aesthetic */
+    margin-top: 25px; /* From robot-controller suggestions */
+    margin-bottom: 20px; /* From robot-controller suggestions */
+    font-size: 2.2em; /* Larger for main headings */
+    color: #00ffff; /* Cyber blue for main titles */
+    text-transform: uppercase;
+    letter-spacing: 0.1em; /* Spaced out letters */
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Subtle glow for titles */
+}
+
+h4 { /* Original h4 styles, now with new aesthetic */
+    margin: 0; /* Keep original margin for h4 if it's within a section */
+    color: #00ffff; /* Cyber blue for section titles */
+    text-transform: uppercase;
+    font-size: 1.5em; /* Adjusted for better hierarchy */
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.3);
+}
+
+.section-title, .eye-title { /* Additional classes for consistency with new aesthetic naming */
+    color: #00ffff; /* Cyber blue for main titles */
+    text-transform: uppercase;
+    font-size: 1.8em; /* Slightly larger */
+    margin-top: 25px;
+    margin-bottom: 20px;
+    letter-spacing: 0.1em; /* Spaced out letters */
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Subtle glow for titles */
+}
+
+/* --- Main Content Area Layout --- */
+#main_content_area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%; /* Take full width */
+}
+
+/* --- Common Control Container Styling --- */
+.section-container {
+    background-color: #161b22; /* Consistent panel background */
+    border: 1px solid #21262d; /* Subtle dark border */
+    border-radius: 8px; /* Slight rounding for panels */
+    margin: 20px auto; /* Center panels with space */
+    padding: 20px;
+    max-width: 900px; /* Limit width for readability */
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 0 15px rgba(0,0,0,0.3); /* Inner and outer shadow */
+    width: calc(100% - 40px); /* Adjust width to account for margins, making it responsive */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.controls-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px; /* Increased gap for cleaner look */
+    margin-bottom: 20px;
+}
+
+.controls-column { /* For vertical stacking of joystick and slider */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center;    /* Center items horizontally within the column */
+    gap: 10px;              /* Space between stacked elements */
+    margin-bottom: 20px;
+    width: 100%; /* Ensure it takes full width for centering its contents */
+}
+
+/* --- General Button Styling (used for most rectangular buttons) --- */
+/* This style is now applied to any element with .button class, including those intended for circle-button,
+    as the circle-button overrides specific properties like border-radius. */
+.button {
+    background-color: #21262d; /* Dark background */
+    color: #00ff99; /* Neon green text */
+    padding: 12px 18px;
+    border: 2px solid #00ff99; /* Strong neon green border */
+    border-radius: 8px; /* More angular than rounded */
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: inset 0 0 5px rgba(0, 255, 153, 0.3), 0 0 8px rgba(0, 255, 153, 0.1); /* Inner and outer glow */
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    text-decoration: none; /* For anchor tags */
+    display: flex; /* Ensure content is centered if icons are added */
+    align-items: center;
+    justify-content: center;
+    min-width: 60px; /* Ensure a minimum width for small buttons */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.button:hover {
+    background-color: #00ff99;
+    color: #21262d;
+    box-shadow: inset 0 0 10px rgba(0, 255, 153, 0.5), 0 0 15px #00ff99; /* Stronger glow on hover */
+}
+
+/* --- Button Group (for grouping small buttons) --- */
+.button-group {
+    display: flex;
+    gap: 10px; /* Space between buttons in a group */
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    justify-content: center; /* Center buttons within the group */
+    width: 100%; /* Take full width for centering */
+}
+
+/* --- Eye Control Specifics --- */
+.circle-button {
+    width: 60px; /* Larger circular buttons to accommodate text */
+    height: 60px;
+    border-radius: 50%;
+    background-color: #21262d;
+    border: 2px solid #ff0055; /* Electric pink/red for eye actions */
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.3); /* Pink glow */
+    display: flex; /* Use flex to center content */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    font-size: 0.8em; /* Adjusted for text */
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.circle-button:hover, .circle-button.selected {
+    background-color: #ff0055;
+    color: #21262d; /* Dark text on bright button */
+    border-color: #ff0055;
+    box-shadow: 0 0 15px #ff0055;
+}
+
+.big-circle-display {
+    width: 180px; /* Even larger display for BLINK */
+    height: 180px;
+    border-radius: 50%;
+    background-color: #00ffff; /* Cyber blue for the display itself */
+    color: #0d1117; /* Dark text */
+    font-size: 2.2em; /* Bigger font for readability */
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.7); /* Glow effect for text */
+    border: 4px solid #00ffff; /* Matching border */
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8); /* Strong glow for the display */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Center content within the circle */
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto; /* Center horizontally */
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+.eyes-section-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* More space between eye panels */
+    padding: 20px;
+    width: 100%; /* Ensures it takes full width for centering */
+}
+
+.eye-section {
+    flex: 1; /* Allows sections to grow and shrink */
+    min-width: 300px; /* Ensure enough space */
+    max-width: 48%; /* Adjust for spacing */
+    background-color: #1a1a1a; /* Darker panel for individual eyes */
+    border: 1px solid #333; /* Subtle border for definition */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column; /* Stack contents vertically */
+    align-items: center; /* Center contents horizontally within each eye section */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* --- Joystick and Slider Styles --- */
+.joystick-container {
+    width: 250px; /* Fixed width */
+    height: 250px; /* Fixed height */
+    background-color: #2a2a2a; /* Slightly lighter dark gray for joystick base */
+    border-radius: 12px;
+    margin: 25px auto 15px; /* Spacing */
+    border: 2px solid #555; /* Defined border */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.7), 0 0 15px rgba(0,0,0,0.2); /* Depth effect */
+    display: flex; /* Use flexbox to center canvas */
+    justify-content: center; 
+    align-items: center;
+    overflow: hidden; /* Hide anything that might draw outside */
+}
+
+/* Critical: Ensure canvas inside joystick-container takes full available space */
+.joystick-container canvas {
+    width: 100%;
+    height: 100%;
+    display: block; /* Remove any default inline spacing */
+}
+
+.slider-label {
+    color: #aaaaaa; /* Lighter gray for labels */
+    font-size: 0.9em;
+    margin-top: 10px;
+    margin-bottom: 5px; /* Space between label and slider */
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.slidecontainer {
+    width: 100%;
+    text-align: center;
+    font-size: 12pt;
+    margin: 15px 0;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 15px; /* Thicker track */
+    background: linear-gradient(to right, #4a4a4a, #888888); /* Gradient for metallic feel */
+    border-radius: 8px;
+    border: 1px solid #666; /* Defined border for the track */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.6); /* Inner shadow for depth */
+    transition: background 0.2s ease;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+/* The slider handle (thumb) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px; /* Larger thumb */
+    height: 30px;
+    background: #e0e6ed; /* Off-white for a metallic knob */
+    border: 2px solid #00ff99; /* Neon green ring */
+    box-shadow: 0 0 10px rgba(0, 255, 153, 0.5); /* Glowing thumb */
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 50%;
+    cursor: grab;
+}
+
+.slider::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    background: #e0e6ed;
+    border: 2px solid #00ff99;
+    box-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 50%;
+    cursor: grab;
+}
+
+/* --- Footer Styling --- */
+footer {
+    margin-top: auto; /* Push footer to the bottom */
+    padding: 20px 0;
+    background-color: #161b22; /* Matches menu bar background */
+    border-top: 2px solid #00ff99; /* Neon green top border */
+    color: #6a737d; /* Muted gray for copyright text */
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+}
+
+/* --- Warning Box Styling (for calibration.html) --- */
+.warning-box {
+    background-color: #3d0000; /* Dark red background for warning */
+    border: 2px solid #ff0000; /* Bright red border */
+    color: #ffdddd; /* Lighter red text */
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 8px;
+    font-size: 0.9em;
+    line-height: 1.4em;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+.warning-box h4 {
+    color: #ff0000; /* Even brighter red for warning title */
+    margin-top: 0;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
+}
+
+.warning-box .fas { /* Font Awesome icon, if used */
+    margin-right: 10px;
+    color: #ffaa00; /* Orange for warning icon */
+}
+
+/* --- Specific Light Buttons (for chestlights.html) --- */
+.menu_light_buttons .button {
+    min-width: 150px;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+
+/* Original utility classes */
+.clear {
+    clear: both;
+}
+
+.hidden {
+    display: none;
+}
+
+/* New icon styles for light buttons (from robot-controller suggestions) */
+.icon {
+    font-size: 2em; /* Larger icons */
+    vertical-align: middle;
+    margin-right: 5px;
+    line-height: 1; /* Ensure proper vertical alignment */
+    display: inline-block;
+}

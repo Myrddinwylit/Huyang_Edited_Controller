@@ -1,0 +1,102 @@
+    <!DOCTYPE HTML><html>
+    <head>
+    <title>Huyang Control - Chest Lights</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <script src="/joystick.js"></script>
+    <script src="/javascript.js"></script>
+
+    <style>
+        /* Styles for the LED visualizers */
+        .led-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Space between LEDs */
+            margin: 30px auto;
+            padding: 20px;
+            border: 1px solid #444;
+            border-radius: 10px;
+            max-width: 400px;
+            background-color: #222;
+        }
+
+        .led {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%; /* Make them perfectly round */
+            border: 3px solid #666; /* Border when off/dim */
+            background-color: #333; /* Default off color */
+            transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out; /* Smooth color changes */
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        /* Add a glow effect for active LEDs */
+        .led.active-glow {
+            box-shadow: 0 0 15px currentColor, 0 0 30px currentColor; /* Glow based on background color */
+        }
+    </style>
+
+    </head>
+    <body>
+    <div class="menuContainer">
+        <a href="/index.html" class="button">Start</a>
+        <a href="/settings.html" class="button">Settings</a>
+        <a href="/calibration.html" class="button">Calibration</a>
+        <a href="/chestlights.html" class="button selected">Chest Lights</a>
+    </div>
+
+    <hr>
+
+    <div id="main_content_area">
+        <div class="section-container">
+            <h2 class="section-title">Chest Lights Control</h2>
+            
+            <div class="led-container">
+                <div id="visual_led_0" class="led"></div>
+                <div id="visual_led_1" class="led"></div>
+            </div>
+
+            <div class="controls-row button-group menu_light_buttons">
+                <button class="button" id="button_chestLightOff" onclick="sendChestLightUpdate(0)">
+                    <span class="icon">🚫</span> Light Off
+                </button>
+                <button class="button" id="button_chestLightStatic" onclick="sendChestLightUpdate(1)">
+                    <span class="icon" style="color: dodgerblue;">●</span> Static Blue
+                </button>
+                <button class="button" id="button_chestLightWarning" onclick="sendChestLightUpdate(2)">
+                    <span class="icon" style="color: red;">!</span> Warning Blink
+                </button>
+                <button class="button" id="button_chestLightProcessing" onclick="sendChestLightUpdate(3)">
+                    <span class="icon" style="color: deepskyblue;">~</span> Processing
+                </button>
+                <button class="button" id="button_chestLightDroid1" onclick="sendChestLightUpdate(4)">
+                    <span class="icon" style="color: gold;">⚙️</span> Droid Mode 1
+                </button>
+                <button class="button" id="button_chestLightDroid2" onclick="sendChestLightUpdate(5)">
+                    <span class="icon" style="color: magenta;">⚡</span> Droid Mode 2
+                </button>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 0.9em; color: #aaa;">
+                Select a mode to control the robot's chest lights.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        Made with &#9829; by Jeanette Müller
+    </footer>
+
+    <script>
+        // Call getServerData to set the initial state of buttons and LED visuals when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Chest Lights page DOM loaded, calling getServerData().");
+            getServerData(); // This will fetch current state and call updateUserInterface, which then calls updateLedVisuals
+        });
+    </script>
+    </body>
+    </html>
+    

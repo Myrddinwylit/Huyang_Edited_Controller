@@ -1,0 +1,140 @@
+    <!DOCTYPE HTML><html>
+    <head>
+    <title>Huyang Control - Calibration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <!-- Load joystick.js and javascript.js as they define functions used here -->
+    <script src="/joystick.js"></script> 
+    <script src="/javascript.js"></script>
+    </head>
+    <body>
+    <div class="menuContainer">
+        <a href="/index.html" class="button">Start</a>
+        <a href="/settings.html" class="button">Settings</a>
+        <a href="/calibration.html" class="button selected">Calibration</a>
+        <a href="/chestlights.html" class="button">Chest Lights</a>
+    </div>
+
+    <hr>
+
+    <div id="main_content_area">
+        <div class="section-container">
+            <h2 class="section-title">Servo Motor Calibration</h2>
+            
+            <div class="warning-box">
+                <h4><i class="fas fa-exclamation-triangle"></i> Important Calibration Warning!</h4>
+                <p><strong>BEFORE YOU START:</strong></p>
+                <ol>
+                    <li><strong>Disconnect all Servo-Horns from your Servo Motors first!</strong></li>
+                    <li>This process will set the digital center (0) for each servo. If horns are attached, they might be forced into an extreme position causing damage.</li>
+                </ol>
+            </div>
+
+            <div class="controls-row button-group">
+                <button class="button" onclick="sendCalibrationSetMiddleAndLock()">Set Middle & Lock Servos</button>
+                <button class="button" onclick="sendCalibrationUnlockServos()">Unlock Servos</button>
+            </div>
+
+            <hr>
+
+            <!-- Neck Calibration -->
+            <div class="section-container inner-section">
+                <h3 class="section-title">Neck Calibration</h3>
+                <div class="controls-column">
+                    <h4 class="slider-label">Neck Rotation (Yaw)</h4>
+                    <div class="slidecontainer">
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="cal_neck_rotation" 
+                               oninput="document.getElementById('cal_neck_rotation_value').innerText = this.value; sendCalibrationUpdate('neck', 'rotation', this.value);">
+                        <span id="cal_neck_rotation_value">0</span>
+                    </div>
+                </div>
+                <div class="controls-column">
+                    <h4 class="slider-label">Neck Tilt Forward/Back (Pitch)</h4>
+                    <div class="slidecontainer">
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="cal_neck_tilt_forward" 
+                               oninput="document.getElementById('cal_neck_tilt_forward_value').innerText = this.value; sendCalibrationUpdate('neck', 'tiltForward', this.value);">
+                        <span id="cal_neck_tilt_forward_value">0</span>
+                    </div>
+                </div>
+                <div class="controls-column">
+                    <h4 class="slider-label">Neck Tilt Sideways (Roll)</h4>
+                    <div class="slidecontainer">
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="cal_neck_tilt_sideways" 
+                               oninput="document.getElementById('cal_neck_tilt_sideways_value').innerText = this.value; sendCalibrationUpdate('neck', 'tiltSideways', this.value);">
+                        <span id="cal_neck_tilt_sideways_value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Body Calibration -->
+            <div class="section-container inner-section">
+                <h3 class="section-title">Body Calibration</h3>
+                <div class="controls-column">
+                    <h4 class="slider-label">Body Rotation (Yaw)</h4>
+                    <div class="slidecontainer">
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="cal_body_rotation" 
+                               oninput="document.getElementById('cal_body_rotation_value').innerText = this.value; sendCalibrationUpdate('body', 'rotation', this.value);">
+                        <span id="cal_body_rotation_value">0</span>
+                    </div>
+                </div>
+                <div class="controls-column">
+                    <h4 class="slider-label">Body Tilt Forward/Back (Pitch)</h4>
+                    <div class="slidecontainer">
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="cal_body_tilt_forward" 
+                               oninput="document.getElementById('cal_body_tilt_forward_value').innerText = this.value; sendCalibrationUpdate('body', 'tiltForward', this.value);">
+                        <span id="cal_body_tilt_forward_value">0</span>
+                    </div>
+                </div>
+                <div class="controls-column">
+                    <h4 class="slider-label">Body Tilt Sideways (Roll)</h4>
+                    <div class="slidecontainer">
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="cal_body_tilt_sideways" 
+                               oninput="document.getElementById('cal_body_tilt_sideways_value').innerText = this.value; sendCalibrationUpdate('body', 'tiltSideways', this.value);">
+                        <span id="cal_body_tilt_sideways_value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Monocle Calibration -->
+            <div class="section-container inner-section">
+                <h3 class="section-title">Monocle Calibration</h3>
+                <div class="controls-column">
+                    <h4 class="slider-label">Monocle Position</h4>
+                    <div class="slidecontainer">
+                        <input type="range" min="0" max="100" value="0" class="slider" id="cal_monocle_position" 
+                               oninput="document.getElementById('cal_monocle_position_value').innerText = this.value; sendCalibrationUpdate('monocle', 'position', this.value);">
+                        <span id="cal_monocle_position_value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="controls-row button-group">
+                <button class="button" onclick="sendCalibrationReset()">Reset to Default (0)</button>
+                <button class="button selected" onclick="sendCalibrationSave()">Save Calibration</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        Made with &#9829; by Jeanette Müller
+    </footer>
+
+    <script>
+        // Call initCalibrationSliders directly after scripts are loaded for this specific page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Calibration page DOM loaded, calling initCalibrationSliders().");
+            initCalibrationSliders();
+        });
+    </script>
+    </body>
+    </html>
+    

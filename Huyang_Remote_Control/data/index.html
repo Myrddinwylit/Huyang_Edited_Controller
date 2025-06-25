@@ -1,0 +1,140 @@
+    <!DOCTYPE HTML><html>
+    <head>
+    <title>Huyang Control</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <!-- Load joystick.js and javascript.js in the head or early body is fine as they only define functions -->
+    <script src="/joystick.js"></script> 
+    <script src="/javascript.js"></script> 
+    </head>
+    <body>
+    <div class="menuContainer">
+        <a href="#" id="button_automatic" class="button" onClick="changeAutomatic(true);">LOADING</a>
+        |
+        <a href="/index.html" class="button">Start</a>
+        <a href="/settings.html" class="button">Settings</a>
+        <a href="/calibration.html" class="button">Calibration</a>
+        <a href="/chestlights.html" class="button">Chest Lights</a>
+    </div>
+
+    <hr>
+
+    <div id="main_content_area">
+<div class="section-container">
+            <h2 class="section-title">Face Controls</h2>
+            <div class="controls-row">
+                <div class="button-group">
+                    <button class="button circle-button" id="eye_all_open" onclick="sendEyeUpdate('all', 1)">Open</button>
+                    <button class="button circle-button" id="eye_all_close" onclick="sendEyeUpdate('all', 2)">Close</button>
+                    <button class="button circle-button" id="eye_all_blink" onclick="sendEyeUpdate('all', 3)">Blink</button>
+                    <button class="button circle-button" id="eye_all_focus" onclick="sendEyeUpdate('all', 4)">Focus</button>
+                    <button class="button circle-button" id="eye_all_sad" onclick="sendEyeUpdate('all', 5)">Sad</button>
+                    <button class="button circle-button" id="eye_all_angry" onclick="sendEyeUpdate('all', 6)">Angry</button>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="controls-row two-column-controls"> <div class="eye-control-panel">
+                    <h3>Left Eye</h3>
+                    <div class="button-group">
+                        <button class="button circle-button" id="eye_left_open" onclick="sendEyeUpdate('left', 1)">Open</button>
+                        <button class="button circle-button" id="eye_left_close" onclick="sendEyeUpdate('left', 2)">Close</button>
+                        <button class="button circle-button" id="eye_left_blink" onclick="sendEyeUpdate('left', 3)">Blink</button>
+                        <button class="button circle-button" id="eye_left_focus" onclick="sendEyeUpdate('left', 4)">Focus</button>
+                        <button class="button circle-button" id="eye_left_sad" onclick="sendEyeUpdate('left', 5)">Sad</button>
+                        <button class="button circle-button" id="eye_left_angry" onclick="sendEyeUpdate('left', 6)">Angry</button>
+                    </div>
+                </div>
+
+                <div class="eye-control-panel">
+                    <h3>Right Eye</h3>
+                    <div class="button-group">
+                        <button class="button circle-button" id="eye_right_open" onclick="sendEyeUpdate('right', 1)">Open</button>
+                        <button class="button circle-button" id="eye_right_close" onclick="sendEyeUpdate('right', 2)">Close</button>
+                        <button class="button circle-button" id="eye_right_blink" onclick="sendEyeUpdate('right', 3)">Blink</button>
+                        <button class="button circle-button" id="eye_right_focus" onclick="sendEyeUpdate('right', 4)">Focus</button>
+                        <button class="button circle-button" id="eye_right_sad" onclick="sendEyeUpdate('right', 5)">Sad</button>
+                        <button class="button circle-button" id="eye_right_angry" onclick="sendEyeUpdate('right', 6)">Angry</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NECK CONTROL SECTION -->
+        <div class="section-container">
+            <h2 class="section-title">Neck Controls</h2>
+            <div class="controls-row">
+                <div class="controls-column">
+                    <h4 class="slider-label">Neck Movement</h4>
+                    <div class="joystick-container" id="joyNeck">
+                        <!-- Joystick library will create its canvas here -->
+                    </div>
+                </div>
+                <div class="controls-column">
+                    <h4 class="slider-label">Neck Sideways Tilt</h4>
+                    <div class="slidecontainer">
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="slider_neckTiltSideways" onchange="sendNeckUpdate()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- BODY CONTROL SECTION -->
+        <div class="section-container">
+            <h2 class="section-title">Body Controls</h2>
+            <div class="controls-row">
+                <div class="controls-column">
+                    <h4 class="slider-label">Body Movement</h4>
+                    <div class="joystick-container" id="joyBody">
+                        <!-- Joystick library will create its canvas here -->
+                    </div>
+                </div>
+                <div class="controls-column">
+                    <h4 class="slider-label">Body Sideways Tilt</h4>
+                    <div class="slidecontainer">
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="slider_bodyTiltSideways" onchange="sendBodyUpdate()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- CHEST LIGHTS CONTROL SECTION (Quick Access on Index) -->
+        <div class="section-container">
+            <h2 class="section-title">Chest Lights (Quick Access)</h2>
+            <div class="controls-row button-group menu_light_buttons">
+                <button class="button" id="button_chestLightOff" onclick="sendChestLightUpdate(0)">
+                    <span class="icon">💡</span> Light Off
+                </button>
+                <button class="button" id="button_chestLightOn" onclick="sendChestLightUpdate(1)">
+                    <span class="icon">💡</span> Light On
+                </button>
+                <button class="button" id="button_chestLightBlink" onclick="sendChestLightUpdate(2)">
+                    <span class="icon">💡</span> Light Blink
+                </button>
+            </div>
+            <p>For more detailed Chest Light controls, visit the <a href="/chestlights.html" class="button">Chest Lights Page</a>.</p>
+        </div>
+
+    </div>
+
+    <footer>
+    Made with &#9829; by Jeanette Müller
+    </footer>
+
+    <script>
+        // Ensure systemInit() is only called when index.html DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("index.html DOM loaded, calling systemInit().");
+            systemInit();
+        });
+    </script>
+    </body>
+    </html>
+    
