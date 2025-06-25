@@ -1,0 +1,35 @@
+<hr>
+
+<h4>Neck Calibration</h4>
+<p>Adjust these sliders to find the neutral position for your neck servos. **Servos should be disconnected when finding the mechanical center.**</p>
+
+<div class="slidecontainer">
+  Rotation Offset
+  <input id="cal_neck_rotation" type="range" min="-100" max="100" value="0" class="slider" onInput="sendCalibrationUpdate('neck', 'rotation', this.value)">
+  <span id="cal_neck_rotation_value">0</span>
+</div>
+
+<div class="slidecontainer">
+  Tilt Forward Offset
+  <input id="cal_neck_tilt_forward" type="range" min="-100" max="100" value="0" class="slider" onInput="sendCalibrationUpdate('neck', 'tiltForward', this.value)">
+  <span id="cal_neck_tilt_forward_value">0</span>
+</div>
+
+<div class="slidecontainer">
+  Tilt Sideways Offset
+  <input id="cal_neck_tilt_sideways" type="range" min="-100" max="100" value="0" class="slider" onInput="sendCalibrationUpdate('neck', 'tiltSideways', this.value)">
+  <span id="cal_neck_tilt_sideways_value">0</span>
+</div>
+<hr>
+<div class="menuContainer">
+    <a href="#" class="button" onClick="loadContainer('/calibration.html', 'main_content_area')">Back to Calibration Menu</a>
+</div>
+
+<script>/Users/brmark/Downloads/Huyang_Remote_Control-main 2/Huyang_Remote_Control/data/calibration body.html
+    // This script will run after the content is loaded via loadContainer
+    document.addEventListener('DOMContentLoaded', (event) => {
+        initCalibrationSliders(); // Call the function to fetch and set values
+    });
+    // This is for subsequent loads via loadContainer where DOMContentLoaded might not refire.
+    // It's called from the loadContainer success callback in the parent.
+</script>
