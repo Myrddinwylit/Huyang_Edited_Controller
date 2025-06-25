@@ -1,601 +1,367 @@
 /*
- * Integrated styles.css - REVISED FOR STAR WARS 'PROFESSOR HUYANG' THEME
- * This stylesheet aims for a dynamic, futuristic, and slightly aged/industrial Star Wars droid controller aesthetic.
+ * Integrated styles.css
+ * This stylesheet combines the original functional layout styles with a new "robot controller" aesthetic.
  * It prioritizes visibility and correct layout while applying new colors, fonts, and shadow effects.
- *
- * Revision: Switched to a Star Wars-inspired palette (dark, metallic, subtle glows) with enhanced button aesthetics.
  */
 
 /* --- General Body and Container Styles --- */
 body {
-    font-family: 'Share Tech Mono', monospace, 'Consolas', 'Courier New', sans-serif; /* A sci-fi monospace font */
-    background: radial-gradient(circle at top left, #1a2a3a, #0d121c); /* Subtle radial gradient for depth */
-    color: #C0C0C0; /* Muted silver for general text, like aged metal */
+    font-family: 'Roboto Mono', monospace, 'Consolas', 'Courier New', sans-serif; /* Prioritize monospace, with fallbacks */
+    background-color: #0d1117; /* Deep, dark charcoal for a robust background */
+    color: #e0e6ed; /* Off-white for general text, soft on eyes */
     margin: 0;
     padding: 0;
     text-align: center;
-    display: flex;
+    display: flex; /* Use flexbox for overall layout */
     flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
-    font-size: 16pt;
-    animation: backgroundShift 30s ease infinite alternate; /* Subtle background movement */
-}
-
-/* Keyframe for subtle background animation */
-@keyframes backgroundShift {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    overflow-x: hidden; /* Prevent horizontal scroll on small overflows */
+    font-size: 16pt; /* Adjusted base font size for better readability on various devices */
 }
 
 /* Base link styling for a clean look */
 a:link, a:visited, a:active {
-    color: #92CDFF; /* Soft blue for links, like a data stream */
+    color: #e0e6ed; /* Matches body text color */
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 a:hover {
-    color: #4A90E2; /* Brighter blue on hover */
-    text-shadow: 0 0 5px rgba(74, 144, 226, 0.7); /* Subtle blue glow */
+    color: #00ff99; /* Neon green for hover, like an active data link */
 }
 
 /* --- Top Menu Bar Styling --- */
 .menuContainer {
-    background-color: rgba(20, 30, 40, 0.8); /* Slightly transparent dark blue-gray */
+    background-color: #161b22; /* Slightly lighter than body background, like a distinct panel */
     padding: 15px 0;
-    border-bottom: 1px solid rgba(74, 144, 226, 0.4); /* Subtle blue bottom border */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Deep shadow */
+    border-bottom: 2px solid #00ff99; /* Neon green bottom border for separation */
+    box-shadow: 0 4px 10px rgba(0, 255, 153, 0.2); /* Subtle glow effect */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25px; /* Increased gap */
-    flex-wrap: wrap;
-    position: sticky; /* Sticky menu */
+    gap: 20px; /* Space between menu items */
+    position: sticky; /* Makes the menu stick to the top */
     top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(5px); /* Frosted glass effect */
+    z-index: 1000; /* Ensures it stays on top of other content */
 }
 
 .menuContainer .button {
-    background: linear-gradient(145deg, #304050, #203040); /* Metallic gradient */
-    color: #92CDFF; /* Soft blue for menu text */
-    border: 1px solid #4A90E2; /* Blue border */
-    padding: 10px 22px; /* Slightly larger padding */
-    border-radius: 3px; /* Sharper edges */
-    transition: all 0.3s ease;
-    font-weight: normal;
+    background: none;
+    border: none;
+    padding: 8px 15px;
+    font-size: 1em; /* Adjusted for menu readability */
+    color: #e0e6ed; /* Text color for menu buttons */
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    box-shadow: 0 0 8px rgba(74, 144, 226, 0.4); /* Blue glow */
-    text-shadow: 0 0 4px rgba(146, 205, 255, 0.6);
+    letter-spacing: 0.08em; /* Slightly increased letter spacing for robotic feel */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 4px; /* Slightly rounded corners */
 }
 
 .menuContainer .button:hover {
-    background: linear-gradient(145deg, #4A90E2, #306BB3); /* Brighter blue gradient */
-    color: #E0F2FF; /* Lighter text on hover */
-    border-color: #92CDFF;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.8); /* More intense blue glow */
-    transform: translateY(-2px); /* Slight lift effect */
+    color: #00ff99;
+    text-shadow: 0 0 8px rgba(0, 255, 153, 0.7); /* Subtle glow on hover */
+    background-color: rgba(0, 255, 153, 0.1); /* Very light highlight */
 }
+
+/* Current page/active menu item styling */
+.menuContainer .button.active {
+    color: #00ff99; /* Bright neon green for the active page */
+    text-shadow: 0 0 10px #00ff99;
+    border: 1px solid #00ff99;
+    background-color: rgba(0, 255, 153, 0.05);
+}
+
 
 /* --- Main Content Area --- */
 #main_content_area {
-    padding: 30px; /* More padding */
-    flex-grow: 1;
-    max-width: 1400px; /* Wider content area */
-    margin: 30px auto; /* More margin */
-    position: relative; /* For overlays/effects */
+    padding: 20px;
+    max-width: 900px; /* Constrain content width for readability */
+    margin: 20px auto; /* Center the content area with some vertical margin */
+    background-color: #161b22; /* Slightly lighter than body, like an internal panel */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 153, 0.1); /* Subtle glow around the main content */
 }
 
-/* --- Section Containers --- */
+hr {
+    border: none;
+    border-top: 1px dashed #2d3640; /* Subtle dashed line for section breaks */
+    margin: 30px 0;
+    width: 80%; /* Shorter line */
+}
+
+
+/* --- Section Headers --- */
 .section-container {
-    background-color: rgba(25, 35, 45, 0.8); /* Slightly transparent dark panel */
-    border: 1px solid rgba(74, 144, 226, 0.3); /* Subtle blue border */
-    border-radius: 5px; /* Sharper corners */
-    padding: 30px; /* More padding */
-    margin-bottom: 40px; /* More spacing between sections */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6), inset 0 0 5px rgba(74, 144, 226, 0.1); /* Deep outer shadow, subtle inner glow */
-    position: relative;
-    overflow: hidden; /* Ensure no overflow from inner elements */
+    background-color: #1e252e; /* Even lighter background for distinct sections */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px; /* Space between sections */
+    box-shadow: inset 0 0 8px rgba(0, 255, 153, 0.05); /* Inner glow */
 }
-
-.section-container::before { /* Subtle background texture/overlay */
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNNiAwIEwxMiAwIEwxMiA2IEwwIDYgTDAgMEw2IDBaIE02IDEyIEwxMiAxMiAxMiAxOCAwIDE4IDAgMTIgTDYgMTJaIiBmaWxsPSIjMjYyYTNkIiAvPgogIDxwYXRoIGQ9Ik0wIDYgTDYgNiBMNiAxMiAwIDEyIDAgNkwwIDZaIE02IDAgTDEyIDAgTDEyIDYgNjA2TDYgMFoiIGZpbGw9IiMzMzQ0NTUiIC8+Cjwvc3ZnPg==') repeat; /* Example subtle grid pattern */
-    opacity: 0.05; /* Very subtle */
-    pointer-events: none;
-}
-
 
 .section-title {
-    color: #E0F2FF; /* Lighter blue-white for titles */
-    margin-top: 0;
-    margin-bottom: 30px; /* More spacing */
-    font-size: 2.2em; /* Larger titles */
+    color: #00ff99; /* Neon green for titles */
+    font-size: 1.8em; /* Larger, more commanding titles */
+    margin-bottom: 5px; /* Reduced margin to bring subtitle closer */
+    text-transform: uppercase; /* Ensure all titles are uppercase */
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px rgba(0, 255, 153, 0.5); /* Glowing effect */
+}
+
+/* --- NEW: Aurebesh Subtitle Styling --- */
+.aurebesh-subtitle {
+    font-family: 'DroidAurebesh', sans-serif; /* Apply the Aurebesh font */
+    font-size: 0.8em; /* Very small but visible */
+    color: #b0c0d0; /* Bright white metallic-like color */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Subtle glow for metallic effect */
+    margin-top: 0; /* Align closely to the main title */
+    margin-bottom: 20px; /* Space between Aurebesh subtitle and controls below */
+    letter-spacing: 0.15em; /* Increase letter spacing for readability of Aurebesh */
     text-transform: uppercase;
-    letter-spacing: 0.15em; /* More spacing */
-    text-shadow: 0 0 10px rgba(146, 205, 255, 0.8); /* Stronger blue glow */
-    border-bottom: 1px solid rgba(74, 144, 226, 0.5); /* Solid blue separator */
-    padding-bottom: 15px;
-    position: relative;
-    font-weight: bold;
-}
-
-.section-title::after { /* Underline effect */
-    content: '';
-    display: block;
-    width: 60px; /* Short underline */
-    height: 3px;
-    background-color: #4A90E2;
-    margin: 10px auto 0;
-    box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
 }
 
 
-/* --- General Controls Row and Group Styling --- */
+/* --- Controls Row & Button Group --- */
 .controls-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
     justify-content: center;
-    gap: 25px; /* Increased gap */
+    gap: 15px; /* Space between control elements/groups */
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .button-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px; /* Increased gap within groups */
-    align-items: center;
+    gap: 10px; /* Space between buttons within a group */
     justify-content: center;
+    align-items: center;
 }
 
-/* --- General Button Styling (Enhanced) --- */
 .button {
-    background: linear-gradient(145deg, #354555, #253545); /* Metallic gradient */
-    color: #92CDFF; /* Soft blue text */
-    border: 1px solid #4A90E2; /* Blue border */
-    padding: 12px 25px; /* More padding */
-    border-radius: 4px; /* Slightly rounded, industrial */
+    background-color: #004d33; /* Darker green background for buttons */
+    color: #e0e6ed;
+    border: 1px solid #00ff99; /* Neon green border */
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition */
-    font-weight: bold;
+    font-size: 0.9em; /* Slightly smaller for button text */
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    box-shadow: 0 0 10px rgba(74, 144, 226, 0.3), inset 0 0 5px rgba(255, 255, 255, 0.05); /* Outer glow, subtle inner highlight */
-    text-shadow: 0 0 5px rgba(146, 205, 255, 0.8); /* Text glow */
-    min-width: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px; /* Space for icon and text */
+    letter-spacing: 0.05em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 255, 153, 0.2);
 }
 
 .button:hover {
-    background: linear-gradient(145deg, #4A90E2, #306BB3); /* Brighter blue gradient */
-    color: #E0F2FF;
-    border-color: #92CDFF;
-    box-shadow: 0 0 20px rgba(74, 144, 226, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.1); /* More intense glow */
-    transform: translateY(-3px); /* Stronger lift effect */
-    text-shadow: 0 0 8px #E0F2FF;
+    background-color: #006644;
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 5px 15px rgba(0, 255, 153, 0.4);
 }
 
 .button:active {
-    transform: translateY(1px); /* Push down on click */
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Inner pressed look */
-    background: #306BB3;
-    color: #B0E0FF;
+    background-color: #003322;
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 255, 153, 0.2);
 }
 
-.button.active { /* For toggle buttons like automatic/manual */
-    background: linear-gradient(145deg, #00C0FF, #0080FF); /* Solid bright blue for active state */
-    color: #FFFFFF;
-    border-color: #FFFFFF;
-    box-shadow: 0 0 25px rgba(0, 192, 255, 0.9), inset 0 0 10px rgba(255, 255, 255, 0.2);
-    text-shadow: 0 0 10px #FFFFFF;
-}
-
-/* Specific styling for circle buttons (e.g., eye states) */
 .circle-button {
-    border-radius: 50%;
-    width: 65px; /* Slightly larger */
-    height: 65px;
+    border-radius: 50%; /* Make buttons circular */
+    width: 60px; /* Fixed width and height for perfect circles */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* Remove default padding for circular buttons */
+    font-size: 0.75em; /* Smaller font for circular buttons */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* --- Input Group & Sliders --- */
+.input-group {
+    display: flex;
+    flex-direction: column; /* Stack labels and inputs vertically */
+    align-items: flex-start; /* Align labels to the left */
+    gap: 8px; /* Space between elements in the group */
+    width: 100%; /* Take full width of the controls-row */
+    max-width: 300px; /* Max width for input groups */
+    margin: 0 auto; /* Center individual input groups */
+}
+
+.input-group label {
+    color: #00ff99; /* Neon green for labels */
     font-size: 0.9em;
-    padding: 0;
-    border: 2px solid #4A90E2;
-    background: linear-gradient(145deg, #253545, #1A2A3A);
-    box-shadow: 0 0 10px rgba(74, 144, 226, 0.3), inset 0 0 5px rgba(255, 255, 255, 0.05);
+    letter-spacing: 0.03em;
+    margin-bottom: 5px;
+    text-transform: uppercase;
 }
 
-.circle-button:hover {
-    background: linear-gradient(145deg, #4A90E2, #306BB3);
-    box-shadow: 0 0 18px rgba(74, 144, 226, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
-}
-.circle-button:active {
-    transform: translateY(1px);
-    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.7);
-}
-
-
-/* --- Slider Styling (Range Input) --- */
-.slider-container {
-    background-color: rgba(30, 40, 50, 0.7); /* Slightly transparent dark background for track */
-    border: 1px solid rgba(74, 144, 226, 0.3);
-    border-radius: 6px;
-    padding: 20px;
-    margin: 15px auto;
-    width: 90%;
-    max-width: 450px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7), 0 0 8px rgba(74, 144, 226, 0.2);
+select, input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #00ff99;
+    background-color: #0d1117; /* Dark background for inputs */
+    color: #e0e6ed;
+    border-radius: 5px;
+    font-size: 0.9em;
+    appearance: none; /* Remove default select arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%2300ff99" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 8px top 50%;
+    background-size: 24px auto;
+    cursor: pointer;
 }
 
-.slider-container label {
-    display: block;
-    margin-bottom: 15px;
-    color: #92CDFF; /* Soft blue label */
-    font-weight: normal;
-    font-size: 1.2em;
-    letter-spacing: 0.06em;
-    text-shadow: 0 0 3px rgba(146, 205, 255, 0.5);
+select:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: #00cc88;
+    box-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
 }
 
-input[type="range"] {
+.range-slider-group {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px; /* Wider for sliders */
+}
+
+.range-slider-group label {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.slider {
     width: 100%;
     -webkit-appearance: none;
-    height: 12px; /* Thicker track */
-    background: #1A2A3A; /* Dark track color */
-    border-radius: 6px;
+    height: 10px;
+    background: #2d3640; /* Dark track */
     outline: none;
+    opacity: 0.9;
     transition: opacity .2s;
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
-    border: 1px solid #304050; /* Inner border for track */
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 30px; /* Larger thumb */
-    height: 30px;
-    background: linear-gradient(145deg, #92CDFF, #4A90E2); /* Blue gradient thumb */
-    border: 2px solid #E0F2FF; /* Lighter blue border */
-    border-radius: 50%;
-    cursor: grab;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.9); /* Strong blue glow */
-    margin-top: -10px; /* Center thumb vertically */
-    transition: all 0.2s ease;
-}
-
-input[type="range"]::-moz-range-thumb {
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(145deg, #92CDFF, #4A90E2);
-    border: 2px solid #E0F2FF;
-    border-radius: 50%;
-    cursor: grab;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.9);
-    transition: all 0.2s ease;
-}
-
-input[type="range"]::-webkit-slider-thumb:active,
-input[type="range"]::-moz-range-thumb:active {
-    cursor: grabbing;
-    background-color: #306BB3; /* Deeper blue when active */
-    box-shadow: 0 0 20px rgba(74, 144, 226, 1);
-    transform: scale(1.1); /* Slight enlarge on active */
-}
-
-.slider-value {
-    margin-top: 15px;
-    font-size: 1.4em; /* Larger value text */
-    color: #92CDFF; /* Soft blue for the value display */
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(146, 205, 255, 0.7);
-}
-
-/* --- Joysticks (if applicable) --- */
-.joystick-container {
-    background-color: rgba(30, 40, 50, 0.7);
-    border: 1px solid rgba(74, 144, 226, 0.3);
-    border-radius: 8px;
-    padding: 20px;
-    margin: 15px auto;
-    width: 170px; /* Adjust size as needed */
-    height: 170px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8), 0 0 10px rgba(74, 144, 226, 0.2);
-}
-
-canvas {
-    border: 2px solid #4A90E2; /* Blue border for canvas */
     border-radius: 5px;
-    background-color: #1A2A3A; /* Dark background for joystick canvas */
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.7);
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-/* --- Checkbox Styling (for Automatic Animation - Sci-Fi Toggle) --- */
-.switch-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px; /* More space */
-    margin: 30px 0;
-    font-size: 1.3em;
-    color: #92CDFF;
-    text-shadow: 0 0 5px rgba(146, 205, 255, 0.5);
+.slider:hover {
+    opacity: 1;
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 70px; /* Wider switch */
-    height: 40px; /* Taller switch */
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider-toggle {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #334455; /* Dark gray for off state */
-    transition: .4s;
-    border-radius: 40px; /* Fully rounded capsule */
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
-    border: 1px solid #4A90E2; /* Subtle border */
-}
-
-.slider-toggle:before {
-    position: absolute;
-    content: "";
-    height: 30px; /* Larger knob */
-    width: 30px;
-    left: 5px; /* Adjust for padding */
-    bottom: 5px;
-    background-color: #C0C0C0; /* Metallic knob */
-    transition: .4s;
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #00ff99; /* Neon green thumb */
     border-radius: 50%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    border: 1px solid #E0F2FF;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 255, 153, 0.7);
+    border: 2px solid #0d1117; /* Dark border for contrast */
 }
 
-input:checked + .slider-toggle {
-    background-color: #00C0FF; /* Bright blue for on state */
-    box-shadow: 0 0 20px rgba(0, 192, 255, 0.8);
-    border-color: #E0F2FF;
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #00ff99;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 255, 153, 0.7);
+    border: 2px solid #0d1117;
 }
 
-input:focus + .slider-toggle {
-    box-shadow: 0 0 10px #00C0FF;
+span[id$="-value"] { /* Targets spans ending with -value (e.g., neck-rotate-value) */
+    color: #e0e6ed;
+    font-size: 1.2em;
+    font-weight: bold;
+    min-width: 40px; /* Ensure consistent width for values */
+    display: inline-block;
+    text-align: center;
+    margin-left: 5px;
+    border: 1px solid #2d3640;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #1e252e;
 }
 
-input:checked + .slider-toggle:before {
-    transform: translateX(30px); /* Move knob further */
-    background-color: #203040; /* Darker knob when on */
-    border-color: #92CDFF;
+/* --- Joystick Canvas --- */
+.joystick-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-/* --- Horizontal Rule (Separator - Star Wars style) --- */
-hr {
-    border: none;
-    border-top: 1px dashed rgba(74, 144, 226, 0.4); /* Dashed blue line */
-    margin: 50px 0; /* More vertical space */
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(to right, transparent, rgba(74, 144, 226, 0.2), transparent); /* Fading gradient effect */
-    height: 1px; /* Ensure it's visible */
+.joystick-canvas {
+    background-color: #0d1117; /* Dark background for the joystick area */
+    border: 2px solid #00ff99; /* Neon green border */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 153, 0.5); /* Stronger glow for interactive elements */
 }
+
+.slider-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    gap: 15px;
+}
+
+/* --- Quick Access Chest Lights Buttons (on index.html) --- */
+.menu_light_buttons .button {
+    font-size: 0.9em;
+    padding: 8px 15px;
+}
+
+.menu_light_buttons .button .icon {
+    margin-right: 5px;
+    font-size: 1.2em;
+}
+
 
 /* --- Footer Styling --- */
 footer {
     margin-top: auto;
-    padding: 25px 0;
-    background-color: rgba(20, 30, 40, 0.8); /* Matches menu bar */
-    border-top: 1px solid rgba(74, 144, 226, 0.4);
-    color: #AAAAAA;
-    font-size: 0.8em;
-    letter-spacing: 0.08em;
-    text-shadow: 0 0 2px rgba(170, 170, 170, 0.5);
+    padding: 20px 0;
+    background-color: #161b22; /* Matches menu bar background */
+    border-top: 2px solid #00ff99; /* Neon green top border */
+    color: #6a737d; /* Muted gray for copyright text */
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
 }
 
-/* --- Warning Box Styling (for calibration.html) - More aggressive/data warning --- */
+/* --- Warning Box Styling (for calibration.html) --- */
 .warning-box {
-    background-color: rgba(60, 0, 0, 0.8); /* Deep translucent red */
-    border: 2px solid #FF4500; /* Bright orange-red border */
-    color: #FFDDCC; /* Lighter red-orange text */
-    padding: 20px;
-    margin: 25px auto;
+    background-color: #3d0000; /* Dark red background for warning */
+    border: 2px solid #ff0000; /* Bright red border */
+    color: #ffdddd; /* Lighter red text */
+    padding: 15px;
+    margin: 20px auto;
     border-radius: 8px;
-    font-size: 1em;
-    line-height: 1.5em;
+    font-size: 0.9em;
+    line-height: 1.4em;
     text-align: left;
-    box-shadow: 0 0 20px rgba(255, 69, 0, 0.6), inset 0 0 8px rgba(255, 200, 100, 0.1);
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(255, 200, 100, 0.7);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
 }
 
 .warning-box h4 {
-    color: #FF6347; /* Tomato red for warning title */
+    color: #ff0000; /* Even brighter red for warning title */
     margin-top: 0;
-    font-size: 1.2em;
+    font-size: 1.1em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    text-shadow: 0 0 8px rgba(255, 99, 71, 0.9);
-    border-bottom: 1px solid rgba(255, 69, 0, 0.7);
-    padding-bottom: 10px;
-    margin-bottom: 15px;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 3px rgba(255, 0, 0, 0.7);
 }
 
-/* --- New Styles for Two-Column Control Layouts --- */
-.controls-row.two-column-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-/* --- Eye Control Panel Specific Styles --- */
-.eye-control-panel {
-    background-color: rgba(30, 40, 50, 0.7); /* Slightly transparent dark blue-gray */
-    border: 1px solid rgba(74, 144, 226, 0.4); /* Blue border for distinct panel look */
-    border-radius: 6px;
-    padding: 25px;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.08); /* Blue glow, subtle inner highlight */
-    flex: 1;
-    min-width: 300px; /* Increased min-width */
-    max-width: 48%; /* Max width to ensure two columns on larger screens */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.eye-control-panel h3 {
-    color: #E0F2FF; /* Lighter blue-white for sub-titles */
-    margin-top: 0;
-    margin-bottom: 25px;
-    font-size: 1.6em;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 8px rgba(146, 205, 255, 0.7);
-    border-bottom: 1px dotted rgba(74, 144, 226, 0.6); /* Dotted blue separator */
-    padding-bottom: 12px;
-    width: 95%;
-    text-align: center;
-}
-
-/* Adjust button group within these panels to ensure proper alignment */
-.eye-control-panel .button-group {
-    justify-content: center;
-    gap: 10px; /* Slightly tighter grid for eye buttons */
-}
-
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 992px) { /* Adjust for larger tablets */
-    body {
-        font-size: 15pt;
-    }
-    .section-title {
-        font-size: 2em;
-    }
-    .button {
-        padding: 10px 20px;
-        min-width: 80px;
-    }
-    .circle-button {
-        width: 60px;
-        height: 60px;
-    }
-    .eye-control-panel {
-        max-width: 47%;
-        min-width: 260px;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        font-size: 14pt;
-    }
-
-    .menuContainer {
-        flex-direction: column;
-        gap: 15px;
-        padding: 10px 0;
-    }
-    .menuContainer .button {
-        padding: 8px 15px;
-    }
-
-    .section-container {
-        padding: 20px;
-        margin-bottom: 30px;
-    }
-    .section-title {
-        font-size: 1.8em;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-    }
-
-    .controls-row {
-        flex-direction: column; /* Stack controls on small screens */
-        gap: 20px;
-    }
-    .controls-row.two-column-controls {
-        flex-direction: column; /* Stack panels vertically on smaller screens */
-        gap: 20px;
-    }
-
-    .button-group {
-        flex-direction: row; /* Keep button groups horizontal if possible */
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .button {
-        width: auto; /* Auto width but allow wrap */
-        flex-basis: 45%; /* Two buttons per row generally */
-        min-width: unset;
-    }
-    .circle-button {
-        width: 55px;
-        height: 55px;
-        font-size: 0.8em;
-    }
-
-    .slider-container, .joystick-container {
-        width: 100%;
-        max-width: 95%;
-    }
-    .eye-control-panel {
-        max-width: 95%; /* Allow panels to take more width when stacked */
-        min-width: unset;
-        padding: 20px;
-    }
-    .eye-control-panel h3 {
-        font-size: 1.4em;
-        margin-bottom: 15px;
-    }
-    .switch-container {
-        flex-direction: column;
-        gap: 10px;
-        font-size: 1.1em;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        font-size: 12pt;
-    }
-    .section-title {
-        font-size: 1.5em;
-    }
-    .button {
-        padding: 8px 12px;
-        font-size: 0.8em;
-        flex-basis: 100%; /* Full width buttons on very small screens */
-    }
-    .circle-button {
-        width: 50px;
-        height: 50px;
-        font-size: 0.7em;
-    }
-    .eye-control-panel {
-        padding: 15px;
-    }
-    .eye-control-panel h3 {
-        font-size: 1.2em;
-    }
+/* Additional styling for the divider between eye controls */
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #2d3640;
+    margin: 20px 0;
 }
